@@ -16,11 +16,29 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    additemwindow.cpp \
+    cabinet.cpp \
+    counter.cpp \
+    fooditem.cpp \
+    foodlistwidget.cpp \
+    foodstoragewidget.cpp \
+    freezer.cpp \
+    fridge.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    recipebook.cpp
 
 HEADERS += \
-    mainwindow.h
+    additemwindow.h \
+    cabinet.h \
+    counter.h \
+    fooditem.h \
+    foodlistwidget.h \
+    foodstoragewidget.h \
+    freezer.h \
+    fridge.h \
+    mainwindow.h \
+    recipebook.h
 
 FORMS += \
     mainwindow.ui
@@ -29,3 +47,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    MainWindowWallpaper.qrc

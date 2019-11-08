@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>hld186-oblong-granite-grey-tile-wallper-ea2.jpg</file>
+    </qresource>
+</RCC>

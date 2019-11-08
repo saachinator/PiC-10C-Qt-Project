@@ -8,7 +8,9 @@
 #include "cabinet.h"
 #include <QLabel>
 #include <QMainWindow>
+#include <QMediaPlayer>
 #include <QFont>
+#include <QSound>
 #include <QPushButton>
 #include <QGridLayout>
 #include <QLineEdit>
@@ -20,12 +22,18 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+
     ui->setupUi(this);
 
     QLabel * my_pantry = new QLabel("My Pantry"); //title of application at top of window
     add_item_button = new QPushButton ("Add Item"); //button to add food items to different storage widgets
     QPushButton * instructions_button = new QPushButton("Instructions"); //button to push for instructions
     QWidget * recipe_widget = new QWidget; //widget where we will add ingredients to search a recipe
+
+    // Play background music
+    QMediaPlayer * music = new QMediaPlayer();
+    music->setMedia(QUrl("qrc:/sounds/atlast.mp3"));
+    music->play();
 
     // different fonts for different buttons of labels
     QFont Add_Item_Button("Arial", 20, QFont::Bold);

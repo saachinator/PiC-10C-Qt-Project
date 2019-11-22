@@ -3,12 +3,14 @@
 
 #include <QMainWindow>
 #include <QPushButton>
+#include <QStackedWidget>
 #include "foodlistwidget.h"
+#include "foodlistwidgetitem.h"
 #include "Fridge.h"
 #include "freezer.h"
 #include "cabinet.h"
 #include "counter.h"
-#include "additemwindow.h"
+#include "addedititemwidget.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -23,6 +25,13 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+public slots:
+    void gotoRecipePage();
+    void gotoInstructionPage();
+    void gotoAddItemPage();
+    void gotoEditItemPage(FoodListWidgetItem *);
+
+    void item_double_clicked(QListWidgetItem *);
 
 private:
     Ui::MainWindow *ui;
@@ -38,8 +47,12 @@ private:
     FoodListWidget * cabinet_list;
     FoodListWidget * counter_list;
 
-    AddItemWindow * add_item_window;
-friend class AddItemWindow;
+    AddEditItemWidget * add_item_widget;
+    AddEditItemWidget * edit_item_widget;
+
+    QStackedWidget * stackedWidget;
+
+friend class AddEditItemWidget;
 };
 
 #endif // MAINWINDOW_H

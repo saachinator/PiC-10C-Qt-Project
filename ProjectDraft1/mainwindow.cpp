@@ -1,7 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "foodstoragewidget.h"
-#include "additemwindow.h"
+#include "addedititemwidget.h"
+#include "foodlistwidget.h"
+#include "foodlistwidgetitem.h"
 #include "Fridge.h"
 #include "freezer.h"
 #include "counter.h"
@@ -15,7 +17,9 @@
 #include <QGridLayout>
 #include <QLineEdit>
 #include <QListWidget>
+#include <QStackedWidget>
 #include "recipebook.h"
+#include <iostream>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -28,7 +32,6 @@ MainWindow::MainWindow(QWidget *parent)
     QLabel * my_pantry = new QLabel("My Pantry"); //title of application at top of window
     add_item_button = new QPushButton ("Add Item"); //button to add food items to different storage widgets
     QPushButton * instructions_button = new QPushButton("Instructions"); //button to push for instructions
-    QWidget * recipe_widget = new QWidget; //widget where we will add ingredients to search a recipe
 
     // Play background music
     QMediaPlayer * music = new QMediaPlayer();
@@ -41,6 +44,7 @@ MainWindow::MainWindow(QWidget *parent)
     QFont Instruction_Button("Arial", 20, QFont::Bold);
 
     //code for the recipe widget
+    QWidget * recipe_widget = new QWidget; //widget where we will add ingredients to search a recipe
     QGridLayout * recipe_widget_layout = new QGridLayout;
     RecipeBook * recipe_book = new RecipeBook(1);
     QLabel * make_a_recipe = new QLabel("Make a Recipe!");
@@ -62,6 +66,42 @@ MainWindow::MainWindow(QWidget *parent)
     QObject::connect(recipe_book, SIGNAL(clicked()), recipe_book, SLOT(is_clicked()));
     recipe_widget->setLayout(recipe_widget_layout);
     recipe_widget->setFixedSize(250,600);
+    //end of code for the recipe widget
+
+    //code for the instruction widget
+    QWidget * instructions_page = new QWidget;
+    QVBoxLayout * instructions_layout = new QVBoxLayout;
+    QPushButton * close_instructions = new QPushButton ("Close Instructions");
+    QLabel * instructions_label = new QLabel("Click the Add Item button to start adding items to your pantry. You will add "
+                                             "the name, the expiration date, and how many units of the item you have. "
+                                             "Click on the fridge, the freezer, the counter, or the cabinets "
+                                             "to see a list of what you've added! From there you can modify your items"
+                                             "by double clicking on an item in one of the lists. You can also "
+                                             "delete your current items or use up to five to search for a recipe.");
+    instructions_label->setWordWrap(true);
+    QLabel * instructions_title = new QLabel("Instructions");
+    instructions_title->setFont(Add_Item_Button);
+    instructions_layout->addWidget(instructions_title,0, Qt::AlignCenter);
+    instructions_layout->addWidget(instructions_label);
+    instructions_layout->addWidget(close_instructions);
+    instructions_page->setLayout(instructions_layout);
+    instructions_page->setStyleSheet("color: rgb(25, 25, 100); background-color: rgb(250, 250, 250);");
+    instructions_page->setFixedSize(250,600);
+    //end of code for instrucion widget
+
+    //code for add_item_widget page
+    add_item_widget = new AddEditItemWidget(true);
+    edit_item_widget = new AddEditItemWidget(false);
+
+    add_item_widget->setFixedSize(250,600);
+    //end of code for add_item_widget page
+
+    stackedWidget = new QStackedWidget;
+    stackedWidget->addWidget(recipe_widget);
+    stackedWidget->addWidget(instructions_page);
+    stackedWidget->addWidget(add_item_widget);
+    stackedWidget->addWidget(edit_item_widget);
+    stackedWidget->setStyleSheet("background-color: rgb(240,240,250);");
 
     fridge = new Fridge(3);
     freezer = new Freezer(3);
@@ -71,25 +111,10 @@ MainWindow::MainWindow(QWidget *parent)
     //central widget
     QWidget * window = new QWidget;
     //layout of central widget
-    QGridLayout * fri = new QGridLayout;
-    fri->setVerticalSpacing(0);
+    QGridLayout * main_layout = new QGridLayout;
+    main_layout->setVerticalSpacing(0);
+    main_layout->setContentsMargins(11, 11, 11, 0);
 
-    //code for the instruction page
-    QWidget * instructions_page = new QWidget;
-    QVBoxLayout * instructions_layout = new QVBoxLayout;
-    QLabel * instructions_label = new QLabel("Click the Add Item button to start adding items to your pantry. You will add "
-                                             "the name, the expiration date, and how many units of the item you have. "
-                                             "Click on the fridge, the freezer, the spice rack, or the cabinets "
-                                             "to see a list of what you've added! From there you can modify and "
-                                             "delete your current ingredients and use up to five to search for a recipe.");
-    instructions_label->setWordWrap(true);
-    QLabel * instructions_title = new QLabel("Instructions");
-    instructions_title->setFont(Add_Item_Button);
-    instructions_layout->addWidget(instructions_title,0, Qt::AlignCenter);
-    instructions_layout->addWidget(instructions_label);
-    instructions_page->setLayout(instructions_layout);
-    instructions_page->setStyleSheet("color: rgb(25, 25, 100); background-color: rgb(250, 250, 250);");
-    //end of code for instrucion page
 
     //setting the font and button colors
     my_pantry->setFont(My_Pantry_Label);
@@ -102,47 +127,91 @@ MainWindow::MainWindow(QWidget *parent)
     //background of the main window, bricks
     setStyleSheet("MainWindow {background-image: url(:/new/prefix1/hld186-oblong-granite-grey-tile-wallper-ea2.jpg);}");
 
-    //showing the instructions_page when user clicks on instruction button
-    QObject::connect(instructions_button, SIGNAL(clicked()), instructions_page, SLOT(show()));
+
 
     //adding all of the widgets and labels to the main window
-    fri->addWidget(my_pantry, 0,0,1, 2, Qt::AlignCenter);
-    fri->addWidget(instructions_button, 0,1, Qt::AlignRight);
-    fri->addWidget(add_item_button, 1, 0);
-    fri->addWidget(fridge, 3, 0);
-    fri->addWidget(freezer, 2,0);
-    fri->addWidget(counter, 3, 1, Qt::AlignBottom);
-    fri->addWidget(cabinet, 1, 1, 1, 1, Qt::AlignTop);
-    fri->addWidget(recipe_widget, 0,2,-1,1);
+    main_layout->addWidget(my_pantry, 0,0,1, 2, Qt::AlignCenter);
+    main_layout->addWidget(instructions_button, 0,1, Qt::AlignRight);
+    main_layout->addWidget(add_item_button, 1, 0);
+    main_layout->addWidget(fridge, 3, 0);
+    main_layout->addWidget(freezer, 2,0);
+    main_layout->addWidget(counter, 3, 1, Qt::AlignBottom);
+    main_layout->addWidget(cabinet, 1, 1, 1, 1, Qt::AlignTop);
+    main_layout->addWidget(stackedWidget, 0,2,-1,1);
 
-    fridge_list = new FoodListWidget;
+    fridge_list = new FoodListWidget (1);
     QObject::connect(fridge, SIGNAL(clicked()), fridge_list, SLOT(show()));
-    freezer_list = new FoodListWidget;
+    freezer_list = new FoodListWidget (2);
     QObject::connect(freezer, SIGNAL(clicked()), freezer_list, SLOT(show()));
-    cabinet_list = new FoodListWidget;
+    cabinet_list = new FoodListWidget (3);
     QObject::connect(cabinet, SIGNAL(clicked()), cabinet_list, SLOT(show()));
-    counter_list = new FoodListWidget;
+    counter_list = new FoodListWidget (4);
     QObject::connect(counter, SIGNAL(clicked()), counter_list, SLOT(show()));
 
     //CODE FOR ADDING BUTTON PAGES
 
-    add_item_window = new AddItemWindow;
     //opens the storage location
-    QObject::connect(add_item_button, SIGNAL(clicked()), add_item_window, SLOT(show()));
-    //showing add_item_window and closing it at the same time the freezer button is clicked
-    QObject::connect(add_item_window, SIGNAL(value_is_cut(FoodItem)), freezer_list, SLOT(line_item_add(FoodItem)));
-    //showing add_item_window and closing it at the same time the fridge button is clicked
-    QObject::connect(add_item_window, SIGNAL(value_is_cut(FoodItem)), fridge_list, SLOT(line_item_add(FoodItem)));
-    //showing add_item_window and closing it at the same time the cabinet button is clicked
-    QObject::connect(add_item_window, SIGNAL(value_is_cut(FoodItem)), cabinet_list, SLOT(line_item_add(FoodItem)));
-    //showing add_item_window and closing it at the same time the counter button is clicked
-    QObject::connect(add_item_window, SIGNAL(value_is_cut(FoodItem)), counter_list, SLOT(line_item_add(FoodItem)));
+    QObject::connect(add_item_button, SIGNAL(clicked()), this, SLOT(gotoAddItemPage()));
+    //showing the instructions_page when user clicks on instruction button
+    QObject::connect(instructions_button, SIGNAL(clicked()), this, SLOT(gotoInstructionPage()));
+    //when close instructions button is clicked goes back to recipe main page
+    QObject::connect(close_instructions, SIGNAL(clicked()), this, SLOT(gotoRecipePage()));
+    //when cancel is pressed on add_item_page then it goes back to recipe main page
+    QObject::connect(add_item_widget->cancel_add_item, SIGNAL(clicked()), this, SLOT(gotoRecipePage()));
+    QObject::connect(add_item_widget->addchange_item_button, SIGNAL(clicked()), this, SLOT(gotoRecipePage()));
+    QObject::connect(edit_item_widget->cancel_add_item, SIGNAL(clicked()), this, SLOT(gotoRecipePage()));
+    QObject::connect(edit_item_widget->addchange_item_button, SIGNAL(clicked()), this, SLOT(gotoRecipePage()));
+    QObject::connect(edit_item_widget->delete_item_button, SIGNAL(clicked()), this, SLOT(gotoRecipePage()));
+
+
+    //showing add_item_widget and closing it at the same time the freezer button is clicked
+    QObject::connect(add_item_widget, SIGNAL(value_is_cut(FoodItem, int)), freezer_list, SLOT(line_item_add(FoodItem, int)));
+    //showing add_item_widget and closing it at the same time the fridge button is clicked
+    QObject::connect(add_item_widget, SIGNAL(value_is_cut(FoodItem, int)), fridge_list, SLOT(line_item_add(FoodItem, int)));
+    //showing add_item_widget and closing it at the same time the cabinet button is clicked
+    QObject::connect(add_item_widget, SIGNAL(value_is_cut(FoodItem, int)), cabinet_list, SLOT(line_item_add(FoodItem, int)));
+    //showing add_item_widget and closing it at the same time the counter button is clicked
+    QObject::connect(add_item_widget, SIGNAL(value_is_cut(FoodItem, int)), counter_list, SLOT(line_item_add(FoodItem, int)));
+
+
+    QObject::connect(fridge_list, SIGNAL(itemDoubleClicked(QListWidgetItem*)), fridge_list, SLOT(doubleClickedRebroadcast (QListWidgetItem *)));
+    QObject::connect(fridge_list, SIGNAL(foodItemDoubleClicked(FoodListWidgetItem *)), this, SLOT(gotoEditItemPage(FoodListWidgetItem*)));
+    QObject::connect(freezer_list, SIGNAL(itemDoubleClicked(QListWidgetItem*)), freezer_list, SLOT(doubleClickedRebroadcast (QListWidgetItem *)));
+    QObject::connect(freezer_list, SIGNAL(foodItemDoubleClicked(FoodListWidgetItem *)), this, SLOT(gotoEditItemPage(FoodListWidgetItem*)));
+    QObject::connect(counter_list, SIGNAL(itemDoubleClicked(QListWidgetItem*)), counter_list, SLOT(doubleClickedRebroadcast (QListWidgetItem *)));
+    QObject::connect(counter_list, SIGNAL(foodItemDoubleClicked(FoodListWidgetItem *)), this, SLOT(gotoEditItemPage(FoodListWidgetItem*)));
+    QObject::connect(cabinet_list, SIGNAL(itemDoubleClicked(QListWidgetItem*)), cabinet_list, SLOT(doubleClickedRebroadcast (QListWidgetItem *)));
+    QObject::connect(cabinet_list, SIGNAL(foodItemDoubleClicked(FoodListWidgetItem *)), this, SLOT(gotoEditItemPage(FoodListWidgetItem*)));
+
+
 
     //BACK TO ORIGINAL PAGE
 
     //setting layout and central widget of window
-    window->setLayout(fri);
+    window->setLayout(main_layout);
     this->setCentralWidget(window);
+}
+void MainWindow::item_double_clicked(QListWidgetItem* item)
+{
+    std::cout << item->text().toStdString() << std::endl;
+}
+void MainWindow::gotoRecipePage()
+{
+    stackedWidget->setCurrentIndex(0);
+}
+void MainWindow::gotoInstructionPage()
+{
+    stackedWidget->setCurrentIndex(1);
+}
+void MainWindow::gotoAddItemPage()
+{
+    stackedWidget->setCurrentIndex(2);
+}
+
+void MainWindow::gotoEditItemPage(FoodListWidgetItem * item)
+{
+    edit_item_widget->setTextDate(item->get_FoodItem());
+    stackedWidget->setCurrentIndex(3);
 }
 
 MainWindow::~MainWindow()

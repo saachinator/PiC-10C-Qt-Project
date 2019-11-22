@@ -1,16 +1,23 @@
 #include "foodlistwidget.h"
+#include "foodlistwidgetitem.h"
+#include <QLabel>
+#include <QVBoxLayout>
+#include <QListWidgetItem>
 
-FoodListWidget::FoodListWidget()
+void FoodListWidget::addItem (FoodItem& f)
 {
+    FoodListWidgetItem * item = new FoodListWidgetItem (f);
+    QListWidget::addItem(item);
 }
 
-void FoodListWidget::addItem(const QString &label, const FoodItem& f)
+void FoodListWidget::line_item_add(FoodItem f, int l)
 {
-    QListWidget::addItem(label);
-    contents.push_back(f);
+    if (location==l)
+    addItem(f);
 }
 
-void FoodListWidget::line_item_add(FoodItem f)
+void FoodListWidget::doubleClickedRebroadcast (QListWidgetItem * item)
 {
-    FoodListWidget::addItem(f.get_name(), f);
+    emit foodItemDoubleClicked(dynamic_cast<FoodListWidgetItem*>(item));
 }
+

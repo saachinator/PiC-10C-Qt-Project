@@ -13,18 +13,16 @@ public:
     virtual QSize sizeHint() const override =0;
     virtual void mousePressEvent(QMouseEvent *event) override =0;
     virtual QSize minimumSizeHint() const override =0;
-    void add_item (const FoodItem& f);
-    FoodItem get_item (const QString& search_name);
+
 private:
     double scale;
-    std::vector <FoodItem> contents;
 
 signals:
     void clicked();
 
 public slots:
 
-friend class AddItemWindow;
+friend class AddItemWidget;
 };
 
 #endif // FOODSTORAGEWIDGET_H

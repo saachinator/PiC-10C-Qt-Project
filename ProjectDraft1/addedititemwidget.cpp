@@ -15,28 +15,30 @@ AddEditItemWidget::AddEditItemWidget(bool is_add, QWidget *parent) : QWidget(par
 
     if (is_add==true)
     {
-         location_page_title = new QLabel("Where would you like to add your item?");
+         location_page_title = new QLabel("Add Item");
     }
     else if (is_add==false)
     {
-        location_page_title = new QLabel("How would you like to change your item?");
+        location_page_title = new QLabel("Change Item");
     }
 
     QFont location_title_font ("Arial", 20, QFont::Bold);
     location_page_title->setFont(location_title_font);
-    location_page_title->setAlignment(Qt::AlignCenter);
+    location_page_title->setAlignment(Qt::AlignTop);
     location_page_title->setWordWrap(true);
 
+    QLabel * locationquestion = new QLabel ("Where would you like to store it?");
     fridge_button = new QRadioButton("Fridge");
     freezer_button = new QRadioButton("Freezer");
     cabinet_button = new QRadioButton("Cabinet");
     counter_button = new QRadioButton("Counter");
 
     layout_add_item->addWidget(location_page_title, 0,0, 1,-1, Qt::AlignCenter);
-    layout_add_item->addWidget(fridge_button,1,0);
-    layout_add_item->addWidget(freezer_button, 1,1);
-    layout_add_item->addWidget(cabinet_button,2,0);
-    layout_add_item->addWidget(counter_button,2,1);
+    layout_add_item->addWidget(locationquestion, 1, 0, 1, -1, Qt::AlignTop);
+    layout_add_item->addWidget(fridge_button,2,0);
+    layout_add_item->addWidget(freezer_button, 2,1);
+    layout_add_item->addWidget(cabinet_button,3,0);
+    layout_add_item->addWidget(counter_button,3,1);
 
     add_name = new QLineEdit;
     add_name->setPlaceholderText("What is the name of your item?");
@@ -58,19 +60,19 @@ AddEditItemWidget::AddEditItemWidget(bool is_add, QWidget *parent) : QWidget(par
 
     cancel_add_item = new QPushButton("Cancel");
 
-    layout_add_item->addWidget(add_name, 3, 0, 1, -1);
-    layout_add_item->addWidget(expiration_label, 4, 0, 1, -1);
-    layout_add_item->addWidget(add_expiration, 5, 0, 1, -1);
-    layout_add_item->addWidget(add_size, 6, 0, 1, -1);
-    layout_add_item->addWidget(addchange_item_button, 8, 0);
+    layout_add_item->addWidget(add_name, 4, 0, 1, -1);
+    layout_add_item->addWidget(expiration_label, 5, 0, 1, -1);
+    layout_add_item->addWidget(add_expiration, 6, 0, 1, -1);
+    layout_add_item->addWidget(add_size, 7, 0, 1, -1);
+    layout_add_item->addWidget(addchange_item_button, 9, 0);
     if (is_add==false)
     {
-        layout_add_item->addWidget(delete_item_button, 8,1);
-        layout_add_item->addWidget(cancel_add_item, 9, 0, 1, -1);
+        layout_add_item->addWidget(delete_item_button, 9,1);
+        layout_add_item->addWidget(cancel_add_item, 10, 0, 1, -1);
     }
     else if (is_add==true)
     {
-        layout_add_item->addWidget(cancel_add_item, 8,1);
+        layout_add_item->addWidget(cancel_add_item, 9,1);
     }
 
     layout_add_item->setRowStretch(0,2);

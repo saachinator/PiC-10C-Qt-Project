@@ -31,6 +31,11 @@ public slots:
     void gotoAddItemPage();
     void gotoEditItemPage(FoodListWidgetItem *);
 
+    void gotoFridgeListPage();
+    void gotoFreezerListPage();
+    void gotoCabinetListPage();
+    void gotoCounterListPage();
+
     void item_double_clicked(QListWidgetItem *);
 
 private:

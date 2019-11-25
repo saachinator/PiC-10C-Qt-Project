@@ -141,13 +141,17 @@ MainWindow::MainWindow(QWidget *parent)
     main_layout->addWidget(recipe_widget, 0, 2, -1, 1, Qt::AlignBottom);
 
     fridge_list = new FoodListWidget (1);
-    QObject::connect(fridge, SIGNAL(clicked()), fridge_list, SLOT(show()));
+    stackedWidget->addWidget(fridge_list);
+    QObject::connect(fridge, SIGNAL(clicked()), this, SLOT(gotoFridgeListPage()));
     freezer_list = new FoodListWidget (2);
-    QObject::connect(freezer, SIGNAL(clicked()), freezer_list, SLOT(show()));
+    stackedWidget->addWidget(freezer_list);
+    QObject::connect(freezer, SIGNAL(clicked()), this, SLOT(gotoFreezerListPage()));
     cabinet_list = new FoodListWidget (3);
-    QObject::connect(cabinet, SIGNAL(clicked()), cabinet_list, SLOT(show()));
+    stackedWidget->addWidget(cabinet_list);
+    QObject::connect(cabinet, SIGNAL(clicked()), this, SLOT(gotoCabinetListPage()));
     counter_list = new FoodListWidget (4);
-    QObject::connect(counter, SIGNAL(clicked()), counter_list, SLOT(show()));
+    stackedWidget->addWidget(counter_list);
+    QObject::connect(counter, SIGNAL(clicked()), this, SLOT(gotoCounterListPage()));
 
 
     //CODE FOR ADDING BUTTON PAGES
@@ -215,6 +219,26 @@ void MainWindow::gotoEditItemPage(FoodListWidgetItem * item)
 {
     edit_item_widget->setTextDate(item->get_FoodItem());
     stackedWidget->setCurrentIndex(2);
+}
+
+void MainWindow::gotoFridgeListPage()
+{
+    stackedWidget->setCurrentIndex(3);
+}
+
+void MainWindow::gotoFreezerListPage()
+{
+    stackedWidget->setCurrentIndex(4);
+}
+
+void MainWindow::gotoCabinetListPage()
+{
+    stackedWidget->setCurrentIndex(5);
+}
+
+void MainWindow::gotoCounterListPage()
+{
+    stackedWidget->setCurrentIndex(6);
 }
 
 MainWindow::~MainWindow()

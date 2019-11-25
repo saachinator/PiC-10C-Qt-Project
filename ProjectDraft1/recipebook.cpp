@@ -3,6 +3,7 @@
 #include <QPainter>
 #include <QDesktopServices>
 #include <QUrl>
+#include <QString>
 
 void RecipeBook::mousePressEvent ( QMouseEvent * event )
 {
@@ -28,5 +29,10 @@ QSize RecipeBook::minimumSizeHint() const
 
 void RecipeBook::is_clicked()
 {
-    QDesktopServices::openUrl(QUrl("https://www.google.com/?client=safari"));
+    QString query = "https://www.google.com/search?q=recipe";
+    for(int i = 0; i < 4; i++){
+        query += "+";
+        query += "cheese";
+    }
+    QDesktopServices::openUrl(QUrl(query));
 }

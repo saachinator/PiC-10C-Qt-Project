@@ -64,7 +64,6 @@ SOURCES       = ../ProjectDraft1/addedititemwidget.cpp \
 		../ProjectDraft1/main.cpp \
 		../ProjectDraft1/mainwindow.cpp \
 		../ProjectDraft1/recipebook.cpp \
-		../ProjectDraft1/recipecreator.cpp \
 		../ProjectDraft1/recipecreator1.cpp qrc_MainWindowWallpaper.cpp \
 		qrc_sounds.cpp \
 		moc_addedititemwidget.cpp \
@@ -85,7 +84,6 @@ OBJECTS       = addedititemwidget.o \
 		main.o \
 		mainwindow.o \
 		recipebook.o \
-		recipecreator.o \
 		recipecreator1.o \
 		qrc_MainWindowWallpaper.o \
 		qrc_sounds.o \
@@ -300,7 +298,6 @@ DIST          = /Users/Saachinator/Qt/5.13.1/clang_64/mkspecs/features/spec_pre.
 		../ProjectDraft1/fridge.h \
 		../ProjectDraft1/mainwindow.h \
 		../ProjectDraft1/recipebook.h \
-		../ProjectDraft1/recipecreator.h \
 		../ProjectDraft1/recipecreator1.h ../ProjectDraft1/addedititemwidget.cpp \
 		../ProjectDraft1/cabinet.cpp \
 		../ProjectDraft1/counter.cpp \
@@ -313,7 +310,6 @@ DIST          = /Users/Saachinator/Qt/5.13.1/clang_64/mkspecs/features/spec_pre.
 		../ProjectDraft1/main.cpp \
 		../ProjectDraft1/mainwindow.cpp \
 		../ProjectDraft1/recipebook.cpp \
-		../ProjectDraft1/recipecreator.cpp \
 		../ProjectDraft1/recipecreator1.cpp
 QMAKE_TARGET  = ProjectDraft1
 DESTDIR       = 
@@ -773,8 +769,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../ProjectDraft1/MainWindowWallpaper.qrc ../ProjectDraft1/sounds.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/Saachinator/Qt/5.13.1/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../ProjectDraft1/addedititemwidget.h ../ProjectDraft1/cabinet.h ../ProjectDraft1/counter.h ../ProjectDraft1/fooditem.h ../ProjectDraft1/foodlistwidget.h ../ProjectDraft1/foodlistwidgetitem.h ../ProjectDraft1/foodstoragewidget.h ../ProjectDraft1/freezer.h ../ProjectDraft1/fridge.h ../ProjectDraft1/mainwindow.h ../ProjectDraft1/recipebook.h ../ProjectDraft1/recipecreator.h ../ProjectDraft1/recipecreator1.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../ProjectDraft1/addedititemwidget.cpp ../ProjectDraft1/cabinet.cpp ../ProjectDraft1/counter.cpp ../ProjectDraft1/fooditem.cpp ../ProjectDraft1/foodlistwidget.cpp ../ProjectDraft1/foodlistwidgetitem.cpp ../ProjectDraft1/foodstoragewidget.cpp ../ProjectDraft1/freezer.cpp ../ProjectDraft1/fridge.cpp ../ProjectDraft1/main.cpp ../ProjectDraft1/mainwindow.cpp ../ProjectDraft1/recipebook.cpp ../ProjectDraft1/recipecreator.cpp ../ProjectDraft1/recipecreator1.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../ProjectDraft1/addedititemwidget.h ../ProjectDraft1/cabinet.h ../ProjectDraft1/counter.h ../ProjectDraft1/fooditem.h ../ProjectDraft1/foodlistwidget.h ../ProjectDraft1/foodlistwidgetitem.h ../ProjectDraft1/foodstoragewidget.h ../ProjectDraft1/freezer.h ../ProjectDraft1/fridge.h ../ProjectDraft1/mainwindow.h ../ProjectDraft1/recipebook.h ../ProjectDraft1/recipecreator1.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../ProjectDraft1/addedititemwidget.cpp ../ProjectDraft1/cabinet.cpp ../ProjectDraft1/counter.cpp ../ProjectDraft1/fooditem.cpp ../ProjectDraft1/foodlistwidget.cpp ../ProjectDraft1/foodlistwidgetitem.cpp ../ProjectDraft1/foodstoragewidget.cpp ../ProjectDraft1/freezer.cpp ../ProjectDraft1/fridge.cpp ../ProjectDraft1/main.cpp ../ProjectDraft1/mainwindow.cpp ../ProjectDraft1/recipebook.cpp ../ProjectDraft1/recipecreator1.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../ProjectDraft1/mainwindow.ui $(DISTDIR)/
 
 
@@ -898,6 +894,7 @@ moc_mainwindow.cpp: ../ProjectDraft1/mainwindow.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtCore.framework/Headers/qobject.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		../ProjectDraft1/recipebook.h \
 		../ProjectDraft1/freezer.h \
 		../ProjectDraft1/cabinet.h \
 		../ProjectDraft1/counter.h \
@@ -926,6 +923,7 @@ moc_recipecreator1.cpp: ../ProjectDraft1/recipecreator1.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../ProjectDraft1/recipebook.h \
 		moc_predefs.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/bin/moc
 	/Users/Saachinator/Qt/5.13.1/clang_64/bin/moc $(DEFINES) --include '/Users/Saachinator/Desktop/PiC 10C/FinalProject/theproject/PiC-10C-Qt-Project/build-ProjectDraft1-Desktop_Qt_5_13_1_clang_64bit-Debug/moc_predefs.h' -I/Users/Saachinator/Qt/5.13.1/clang_64/mkspecs/macx-clang -I'/Users/Saachinator/Desktop/PiC 10C/FinalProject/theproject/PiC-10C-Qt-Project/ProjectDraft1' -I/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtMultimedia.framework/Headers -I/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtGui.framework/Headers -I/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtNetwork.framework/Headers -I/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtCore.framework/Headers -I. -I/Library/Developer/CommandLineTools/usr/include/c++/v1 -I/Library/Developer/CommandLineTools/usr/lib/clang/9.1.0/include -I/Library/Developer/CommandLineTools/usr/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.13.sdk/usr/include -F/Users/Saachinator/Qt/5.13.1/clang_64/lib ../ProjectDraft1/recipecreator1.h -o moc_recipecreator1.cpp
@@ -992,6 +990,7 @@ addedititemwidget.o: ../ProjectDraft1/addedititemwidget.cpp ../ProjectDraft1/add
 		../ProjectDraft1/recipecreator1.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../ProjectDraft1/recipebook.h \
 		../ProjectDraft1/freezer.h \
 		../ProjectDraft1/cabinet.h \
 		../ProjectDraft1/counter.h
@@ -1087,6 +1086,7 @@ foodstoragewidget.o: ../ProjectDraft1/foodstoragewidget.cpp ../ProjectDraft1/foo
 		../ProjectDraft1/recipecreator1.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		../ProjectDraft1/recipebook.h \
 		../ProjectDraft1/freezer.h \
 		../ProjectDraft1/cabinet.h \
 		../ProjectDraft1/counter.h
@@ -1144,6 +1144,7 @@ main.o: ../ProjectDraft1/main.cpp ../ProjectDraft1/mainwindow.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtCore.framework/Headers/qobject.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		../ProjectDraft1/recipebook.h \
 		../ProjectDraft1/freezer.h \
 		../ProjectDraft1/cabinet.h \
 		../ProjectDraft1/counter.h \
@@ -1182,6 +1183,7 @@ mainwindow.o: ../ProjectDraft1/mainwindow.cpp ../ProjectDraft1/mainwindow.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtCore.framework/Headers/qobject.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		../ProjectDraft1/recipebook.h \
 		../ProjectDraft1/freezer.h \
 		../ProjectDraft1/cabinet.h \
 		../ProjectDraft1/counter.h \
@@ -1200,8 +1202,7 @@ mainwindow.o: ../ProjectDraft1/mainwindow.cpp ../ProjectDraft1/mainwindow.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtMultimedia.framework/Headers/QSound \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtMultimedia.framework/Headers/qsound.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
-		../ProjectDraft1/recipebook.h
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../ProjectDraft1/mainwindow.cpp
 
 recipebook.o: ../ProjectDraft1/recipebook.cpp ../ProjectDraft1/recipebook.h \
@@ -1217,28 +1218,6 @@ recipebook.o: ../ProjectDraft1/recipebook.cpp ../ProjectDraft1/recipebook.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtCore.framework/Headers/qstring.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o recipebook.o ../ProjectDraft1/recipebook.cpp
 
-recipecreator.o: ../ProjectDraft1/recipecreator.cpp ../ProjectDraft1/recipecreator.h \
-		../ProjectDraft1/recipebook.h \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QLabel \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtCore.framework/Headers/QString \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtCore.framework/Headers/qstring.h \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtGui.framework/Headers/QFont \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtGui.framework/Headers/qfont.h \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtGui.framework/Headers/QDesktopServices \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtGui.framework/Headers/qdesktopservices.h \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtCore.framework/Headers/QUrl \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtCore.framework/Headers/qurl.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o recipecreator.o ../ProjectDraft1/recipecreator.cpp
-
 recipecreator1.o: ../ProjectDraft1/recipecreator1.cpp ../ProjectDraft1/recipecreator1.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtCore.framework/Headers/qobject.h \
@@ -1248,6 +1227,7 @@ recipecreator1.o: ../ProjectDraft1/recipecreator1.cpp ../ProjectDraft1/recipecre
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		../ProjectDraft1/recipebook.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QLabel \

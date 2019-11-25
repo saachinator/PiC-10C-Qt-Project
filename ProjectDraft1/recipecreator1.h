@@ -6,6 +6,8 @@
 #include <QLineEdit>
 #include <QWidget>
 #include <QPushButton>
+#include "recipebook.h"
+
 
 class RecipeCreator1 : public QWidget
 {
@@ -23,6 +25,7 @@ public slots:
     void this_button_clicked();
 
 private:
+    RecipeBook * book;
     QPushButton * button;
     QLineEdit * Item1;
     QLineEdit * Item2;

@@ -15,7 +15,7 @@ RecipeCreator1::RecipeCreator1(QWidget *parent) : QWidget(parent)
     QLabel * make_a_recipe = new QLabel("Make a Recipe!");
     QFont Add_Item_Button("Arial", 20, QFont::Bold);
     make_a_recipe->setFont(Add_Item_Button);
-    button = new QPushButton("Search Recipes!");
+    book = new RecipeBook(1);
 
 
     QLabel * number_1 = new QLabel ("1. ");
@@ -25,7 +25,7 @@ RecipeCreator1::RecipeCreator1(QWidget *parent) : QWidget(parent)
     QLabel * number_5 = new QLabel ("5. ");
 
     Item1 = new QLineEdit;
-    Item1->setPlaceholderText("Item 1 (required)");
+    Item1->setPlaceholderText("Item 1 (Required)");
     Item2 = new QLineEdit;
     Item2->setPlaceholderText("Item 2");
     Item3 = new QLineEdit;
@@ -46,11 +46,11 @@ RecipeCreator1::RecipeCreator1(QWidget *parent) : QWidget(parent)
     recipe_widget_layout->addWidget(Item4, 4, 1);
     recipe_widget_layout->addWidget(number_5,5,0);
     recipe_widget_layout->addWidget(Item5, 5, 1);
-    recipe_widget_layout->addWidget(button, 6, 1, 1, -1, Qt::AlignRight);
+    recipe_widget_layout->addWidget(book, 6, 1, 1, -1, Qt::AlignRight);
 
     this->setStyleSheet("background-color: rgb(240,240,250);");
 
-    QObject::connect(button, SIGNAL(clicked()), this, SLOT(this_button_clicked()));
+    QObject::connect(book, SIGNAL(clicked()), this, SLOT(this_button_clicked()));
     this->setLayout(recipe_widget_layout);
 }
 
@@ -84,29 +84,32 @@ void RecipeCreator1::this_button_clicked(){
     QString item_4 = Item4->text();
     QString item_5 = Item5->text();
     QString query = "https://www.google.com/search?q=recipe";
+    if (item_1 == ""){
 
-    if (item_5 != ""){
-        query += "+";
-        query += item_5;
-    }
-    if (item_2 != ""){
-        query += "+";
-        query += item_2;
-    }
-    if (item_3 != ""){
-        query += "+";
-        query += item_3;
-    }
-    if (item_4 != ""){
-        query += "+";
-        query += item_4;
-    }
-    if (item_5 != ""){
-        query += "+";
-        query += item_5;
-    }
+    } else {
+        if (item_1 != ""){
+            query += "+";
+            query += item_1;
+        }
+        if (item_2 != ""){
+            query += "+";
+            query += item_2;
+        }
+        if (item_3 != ""){
+            query += "+";
+            query += item_3;
+        }
+        if (item_4 != ""){
+            query += "+";
+            query += item_4;
+        }
+        if (item_5 != ""){
+            query += "+";
+            query += item_5;
+        }
 
-    QDesktopServices::openUrl(QUrl(query));
+        QDesktopServices::openUrl(QUrl(query));
+    }
 }
 
 RecipeCreator1::~RecipeCreator1()

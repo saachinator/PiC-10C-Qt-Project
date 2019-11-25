@@ -26,12 +26,4 @@ QSize RecipeBook::minimumSizeHint() const
 {
     return QSize(71*scale,61*scale);
 }
-/*
-void RecipeBook::is_clicked()
-{
-    QString query = "https://www.google.com/search?q=recipe";
 
-    QDesktopServices::openUrl(QUrl(query));
-}
-
-*/

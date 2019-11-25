@@ -29,7 +29,6 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     recipebook.cpp \
-    recipecreator.cpp \
     recipecreator1.cpp
 
 HEADERS += \
@@ -44,7 +43,6 @@ HEADERS += \
     fridge.h \
     mainwindow.h \
     recipebook.h \
-    recipecreator.h \
     recipecreator1.h
 
 FORMS += \

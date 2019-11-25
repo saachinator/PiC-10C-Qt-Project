@@ -7,6 +7,7 @@
 #include "Fridge.h"
 #include "freezer.h"
 #include "counter.h"
+#include "recipecreator1.h"
 #include "cabinet.h"
 #include <QLabel>
 #include <QMainWindow>
@@ -44,27 +45,7 @@ MainWindow::MainWindow(QWidget *parent)
  //   QFont Instruction_Button("Arial", 20, QFont::Bold);
 
     //code for the recipe widget
-    QWidget * recipe_widget = new QWidget; //widget where we will add ingredients to search a recipe
-    QGridLayout * recipe_widget_layout = new QGridLayout;
-    RecipeBook * recipe_book = new RecipeBook(1);
-    QLabel * make_a_recipe = new QLabel("Make a Recipe!");
-    make_a_recipe->setFont(Add_Item_Button);
-    QLabel * number_1 = new QLabel ("1. ");
-    QLabel * number_2 = new QLabel ("2. ");
-    QLabel * number_3 = new QLabel ("3. ");
-    QLabel * number_4 = new QLabel ("4. ");
-    QLabel * number_5 = new QLabel ("5. ");
-    recipe_widget_layout->addWidget(make_a_recipe, 0, 0, 1, -1, Qt::AlignCenter);
-    recipe_widget_layout->addWidget(number_1, 1, 0);
-    recipe_widget_layout->addWidget(number_2,2,0);
-    recipe_widget_layout->addWidget(number_3,3,0);
-    recipe_widget_layout->addWidget(number_4,4,0);
-    recipe_widget_layout->addWidget(number_5,5,0);
-    recipe_widget_layout->addWidget(recipe_book, 6,1, 1, -1, Qt::AlignRight);
-    //background of adding ingredients to recipe widget
-    recipe_widget->setStyleSheet("background-color: rgb(240,240,250);");
-    QObject::connect(recipe_book, SIGNAL(clicked()), recipe_book, SLOT(is_clicked()));
-    recipe_widget->setLayout(recipe_widget_layout);
+    recipe_widget = new RecipeCreator1; //widget where we will add ingredients to search a recipe
     recipe_widget->setFixedSize(250,300);
     //end of code for the recipe widget
 

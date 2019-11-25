@@ -7,6 +7,7 @@
 #include "foodlistwidget.h"
 #include "foodlistwidgetitem.h"
 #include "Fridge.h"
+#include "recipecreator1.h"
 #include "freezer.h"
 #include "cabinet.h"
 #include "counter.h"
@@ -46,6 +47,7 @@ private:
     Counter * counter;
 
     QPushButton * add_item_button;
+    RecipeCreator1 * recipe_widget;
 
     FoodListWidget * fridge_list;
     FoodListWidget * freezer_list;

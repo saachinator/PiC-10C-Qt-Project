@@ -28,7 +28,9 @@ SOURCES += \
     fridge.cpp \
     main.cpp \
     mainwindow.cpp \
-    recipebook.cpp
+    recipebook.cpp \
+    recipecreator.cpp \
+    recipecreator1.cpp
 
 HEADERS += \
     addedititemwidget.h \
@@ -41,7 +43,9 @@ HEADERS += \
     freezer.h \
     fridge.h \
     mainwindow.h \
-    recipebook.h
+    recipebook.h \
+    recipecreator.h \
+    recipecreator1.h
 
 FORMS += \
     mainwindow.ui

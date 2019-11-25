@@ -3,6 +3,7 @@
 
 #include <QWidget>
 
+
 class RecipeBook : public QWidget
 {
     Q_OBJECT
@@ -12,15 +13,17 @@ public:
     void paintEvent(QPaintEvent *event) override;
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;
-private:
-    double scale;
 
-public slots:
-    void is_clicked();
 signals:
     void clicked();
 
 public slots:
+  //  void is_clicked();
+
+private:
+    double scale;
+
+friend class recipecreator;
 };
 
 #endif // RECIPEBOOK_H

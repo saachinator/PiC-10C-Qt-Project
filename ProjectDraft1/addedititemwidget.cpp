@@ -71,12 +71,16 @@ AddEditItemWidget::AddEditItemWidget(bool is_add, QWidget *parent) : QWidget(par
         layout_add_item->addWidget(delete_item_button, 9, 0, 1, -1);
       //  layout_add_item->addWidget(cancel_add_item, 9,1);
         layout_add_item->addWidget(addchange_item_button, 10, 0, 1, -1);
+        delete_item_button->setStyleSheet("background-color: rgb(245,220,160);");
+        addchange_item_button->setStyleSheet("background-color: rgb(157,181,98);");
     }
     else if (is_add==true)
     {
         layout_add_item->addWidget(clear_fields_button, 9, 0, 1, -1);
      //   layout_add_item->addWidget(cancel_add_item, 9,1);
         layout_add_item->addWidget(addchange_item_button, 10, 0, 1, -1);
+        clear_fields_button->setStyleSheet("background-color: rgb(245,220,160);");
+        addchange_item_button->setStyleSheet("background-color: rgb(157,181,98);");
     }
 
     layout_add_item->setRowStretch(0,2);

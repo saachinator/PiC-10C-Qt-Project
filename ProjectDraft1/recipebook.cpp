@@ -12,7 +12,7 @@ void RecipeBook::mousePressEvent ( QMouseEvent * event )
 void RecipeBook::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
-    painter.setBrush(QBrush(Qt::darkRed));
+    painter.setBrush(QBrush(QColor(90,107,47)));
     QPointF points_left[4] = {QPointF(0.0*scale,0.0*scale),QPointF(35*scale,20.0*scale),QPointF(35.0*scale,60.0*scale),QPointF(0*scale,45.0*scale)};
     QPointF points_right[4] = {QPointF(35.0*scale,20.0*scale),QPointF(70.0*scale,0.0*scale),QPointF(70.0*scale,45.0*scale),QPointF(35.0*scale,60.0*scale)};
     painter.drawPolygon(points_left, 4);

@@ -48,7 +48,7 @@ MainWindow::MainWindow(QWidget *parent)
     //end of code for the recipe widget
 
     recipe_widget = new RecipeCreator1;
-    recipe_widget->setFixedSize(250,300);
+    recipe_widget->setFixedSize(250,325);
     QPalette pal = palette();
 
     // set black background

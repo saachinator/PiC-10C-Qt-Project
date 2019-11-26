@@ -7,6 +7,7 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QGridLayout>
+#include <QRadioButton>
 #include "recipebook.h"
 
 
@@ -24,9 +25,17 @@ public:
     ~RecipeCreator1();
 public slots:
     void this_button_clicked();
+    void clear_button_clicked();
 
 private:
     QGridLayout * recipe_widget_layout;
+
+    QRadioButton * vegan_button;
+    QRadioButton * neither_button;
+    QRadioButton * vegetarian_button;
+
+    QPushButton * clear_fields_button;
+
     RecipeBook * book;
     QPushButton * button;
     QLineEdit * Item1;
@@ -34,6 +43,7 @@ private:
     QLineEdit * Item3;
     QLineEdit * Item4;
     QLineEdit * Item5;
+    QLineEdit * allergies;
 
 };
 

@@ -93,7 +93,7 @@ MainWindow::MainWindow(QWidget *parent)
     stackedWidget->addWidget(instructions_page);
     stackedWidget->addWidget(add_item_widget);
     stackedWidget->addWidget(edit_item_widget);
-    stackedWidget->setStyleSheet("background-color: rgb(240,240,250);");
+    stackedWidget->setStyleSheet("background-color: rgb(250,250,250);");
     stackedWidget->setFixedSize(250, 300);
 
     fridge = new Fridge(3);
@@ -131,6 +131,7 @@ MainWindow::MainWindow(QWidget *parent)
     main_layout->addWidget(counter, 3, 1, Qt::AlignBottom);
     main_layout->addWidget(cabinet, 1, 1, 1, 1, Qt::AlignTop);
     main_layout->addWidget(stackedWidget, 0,2,-1,1, Qt::AlignTop);
+
     main_layout->addWidget(cancel_button, 0,2,-1,1, Qt::AlignHCenter);
     main_layout->addWidget(recipe_widget, 0, 2, -1, 1, Qt::AlignBottom);
 

@@ -4,13 +4,14 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QString>
+#include <QPainter>
 #include <QFont>
 #include <QDesktopServices>
 #include <QUrl>
 
 RecipeCreator1::RecipeCreator1(QWidget *parent) : QWidget(parent)
 {
-    QGridLayout * recipe_widget_layout = new QGridLayout;
+    recipe_widget_layout = new QGridLayout;
   //  RecipeBook * recipe_book = new RecipeBook(1);
     QLabel * make_a_recipe = new QLabel("Make a Recipe!");
     QFont Add_Item_Button("Arial", 20, QFont::Bold);
@@ -48,11 +49,11 @@ RecipeCreator1::RecipeCreator1(QWidget *parent) : QWidget(parent)
     recipe_widget_layout->addWidget(Item5, 5, 1);
     recipe_widget_layout->addWidget(book, 6, 1, 1, -1, Qt::AlignRight);
 
-    this->setStyleSheet("background-color: rgb(240,240,250);");
-
     QObject::connect(book, SIGNAL(clicked()), this, SLOT(this_button_clicked()));
     this->setLayout(recipe_widget_layout);
 }
+
+
 
 QLineEdit& RecipeCreator1::get_item1() const
 {

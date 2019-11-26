@@ -118,6 +118,7 @@ void AddEditItemWidget::button_clicked()
             w.exec();
             return;
         }
+
     }
 
     if (fridge_button->isChecked())

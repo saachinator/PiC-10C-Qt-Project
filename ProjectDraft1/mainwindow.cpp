@@ -45,9 +45,17 @@ MainWindow::MainWindow(QWidget *parent)
  //   QFont Instruction_Button("Arial", 20, QFont::Bold);
 
     //code for the recipe widget
-    recipe_widget = new RecipeCreator1; //widget where we will add ingredients to search a recipe
-    recipe_widget->setFixedSize(250,300);
     //end of code for the recipe widget
+
+    recipe_widget = new RecipeCreator1;
+    recipe_widget->setFixedSize(250,300);
+    QPalette pal = palette();
+
+    // set black background
+    pal.setColor(QPalette::Background, Qt::white);
+    recipe_widget->setAutoFillBackground(true);
+    recipe_widget->setPalette(pal);
+    recipe_widget->show();
 
     //code for the instruction widget
     QWidget * instructions_page = new QWidget;

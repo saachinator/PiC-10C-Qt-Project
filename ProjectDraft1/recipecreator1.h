@@ -6,6 +6,7 @@
 #include <QLineEdit>
 #include <QWidget>
 #include <QPushButton>
+#include <QGridLayout>
 #include "recipebook.h"
 
 
@@ -25,6 +26,7 @@ public slots:
     void this_button_clicked();
 
 private:
+    QGridLayout * recipe_widget_layout;
     RecipeBook * book;
     QPushButton * button;
     QLineEdit * Item1;

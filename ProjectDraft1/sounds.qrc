@@ -2,4 +2,7 @@
     <qresource prefix="/sounds">
         <file>atlast.mp3</file>
     </qresource>
+    <qresource prefix="/">
+        <file>music.qrc</file>
+    </qresource>
 </RCC>

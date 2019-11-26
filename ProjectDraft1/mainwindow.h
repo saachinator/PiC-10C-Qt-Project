@@ -46,6 +46,7 @@ private:
     Cabinet * cabinet;
     Counter * counter;
 
+    QPushButton *cancel_button;
     QPushButton * add_item_button;
     RecipeCreator1 * recipe_widget;
 

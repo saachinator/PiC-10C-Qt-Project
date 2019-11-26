@@ -7,7 +7,7 @@ void Fridge::paintEvent(QPaintEvent * event)
     painter.setPen(QPen(Qt::black));
     painter.setBrush(QBrush(Qt::gray));
     //fridge's body
-    painter.drawRect(0*scale, 0*scale, 60*scale, 80*scale);
+    painter.drawRect(0*scale, 0*scale, 60*scale, 90*scale);
 
     //fridge's handle
     painter.setBrush(QBrush(QColor(180,180,180)));
@@ -20,9 +20,9 @@ void Fridge::mousePressEvent ( QMouseEvent * event )
 }
 QSize Fridge::sizeHint() const
 {
-    return QSize(60*scale,80*scale);
+    return QSize(60*scale,90*scale);
 }
 QSize Fridge::minimumSizeHint() const
 {
-    return QSize(60*scale,80*scale);
+    return QSize(60*scale,90*scale);
 }

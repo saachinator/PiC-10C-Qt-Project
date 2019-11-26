@@ -55,4 +55,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     MainWindowWallpaper.qrc \
+    audio.qrc \
     sounds.qrc

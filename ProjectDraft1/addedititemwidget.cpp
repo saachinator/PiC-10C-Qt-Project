@@ -58,28 +58,33 @@ AddEditItemWidget::AddEditItemWidget(bool is_add, QWidget *parent) : QWidget(par
         delete_item_button = new QPushButton ("Delete Item");
     }
 
+    clear_fields_button = new QPushButton("Clear Fields");
+
     cancel_add_item = new QPushButton("Cancel");
 
     layout_add_item->addWidget(add_name, 4, 0, 1, -1);
     layout_add_item->addWidget(expiration_label, 5, 0, 1, -1);
     layout_add_item->addWidget(add_expiration, 6, 0, 1, -1);
     layout_add_item->addWidget(add_size, 7, 0, 1, -1);
-    layout_add_item->addWidget(addchange_item_button, 9, 0);
     if (is_add==false)
     {
-        layout_add_item->addWidget(delete_item_button, 9,1);
-        layout_add_item->addWidget(cancel_add_item, 10, 0, 1, -1);
+        layout_add_item->addWidget(delete_item_button, 9, 0, 1, -1);
+      //  layout_add_item->addWidget(cancel_add_item, 9,1);
+        layout_add_item->addWidget(addchange_item_button, 10, 0, 1, -1);
     }
     else if (is_add==true)
     {
-        layout_add_item->addWidget(cancel_add_item, 9,1);
+        layout_add_item->addWidget(clear_fields_button, 9, 0, 1, -1);
+     //   layout_add_item->addWidget(cancel_add_item, 9,1);
+        layout_add_item->addWidget(addchange_item_button, 10, 0, 1, -1);
     }
 
     layout_add_item->setRowStretch(0,2);
     layout_add_item->setRowStretch(7,1);
 
     QObject::connect(addchange_item_button, SIGNAL(clicked()), this, SLOT(button_clicked()));
-    QObject::connect(addchange_item_button, SIGNAL(clicked()), this, SLOT(close_widget()));
+    QObject::connect(cancel_add_item, SIGNAL(clicked()), this, SLOT(close_widget()));
+    QObject::connect(clear_fields_button, SIGNAL(clicked()), this, SLOT(clearFields()));
 
     this->setLayout(layout_add_item);
 }
@@ -95,6 +100,27 @@ QDateEdit& AddEditItemWidget::get_expiration() const
 QLineEdit& AddEditItemWidget::get_size() const
 {
     return *add_size;
+}
+
+void AddEditItemWidget::clearFields(){
+    add_name->clear();
+    add_expiration->setMinimumDate(QDate::currentDate());
+    add_size->clear();
+
+    fridge_button->setAutoExclusive(false);
+    freezer_button->setAutoExclusive(false);
+    cabinet_button->setAutoExclusive(false);
+    counter_button->setAutoExclusive(false);
+
+    fridge_button->setChecked(false);
+    freezer_button->setChecked(false);
+    cabinet_button->setChecked(false);
+    counter_button->setChecked(false);
+
+    fridge_button->setAutoExclusive(true);
+    freezer_button->setAutoExclusive(true);
+    cabinet_button->setAutoExclusive(true);
+    counter_button->setAutoExclusive(true);
 }
 void AddEditItemWidget::button_clicked()
 {
@@ -137,30 +163,14 @@ void AddEditItemWidget::button_clicked()
     {
         emit value_is_cut(FoodItem (name, expiration, unit), 4);
     }
+    close_widget();
 }
 
 
 
 void AddEditItemWidget::close_widget()
 {
-    add_name->clear();
-    add_expiration->clear();
-    add_size->clear();
-
-    fridge_button->setAutoExclusive(false);
-    freezer_button->setAutoExclusive(false);
-    cabinet_button->setAutoExclusive(false);
-    counter_button->setAutoExclusive(false);
-
-    fridge_button->setChecked(false);
-    freezer_button->setChecked(false);
-    cabinet_button->setChecked(false);
-    counter_button->setChecked(false);
-
-    fridge_button->setAutoExclusive(true);
-    freezer_button->setAutoExclusive(true);
-    cabinet_button->setAutoExclusive(true);
-    counter_button->setAutoExclusive(true);
+    clearFields();
 
     this->close();
 }

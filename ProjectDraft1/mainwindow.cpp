@@ -35,8 +35,10 @@ MainWindow::MainWindow(QWidget *parent)
   //  QPushButton * instructions_button = new QPushButton("Instructions"); //button to push for instructions
 
     // Play background music
+    cancel_button = new QPushButton("Cancel, View Instructions");
+    cancel_button->setStyleSheet("background-color: rgb(217,154,143)");
     QMediaPlayer * music = new QMediaPlayer();
-    music->setMedia(QUrl("qrc:/sounds/atlast.mp3"));
+    music->setMedia(QUrl("qrc:/music/music.mp3"));
     music->play();
 
     // different fonts for different buttons of labels
@@ -48,13 +50,15 @@ MainWindow::MainWindow(QWidget *parent)
     //end of code for the recipe widget
 
     recipe_widget = new RecipeCreator1;
-    recipe_widget->setFixedSize(250,325);
+    recipe_widget->setFixedSize(250,300);
+  //  recipe_widget->setStyleSheet("border: 1px black");
     QPalette pal = palette();
 
     // set black background
     pal.setColor(QPalette::Background, Qt::white);
     recipe_widget->setAutoFillBackground(true);
     recipe_widget->setPalette(pal);
+  //  recipe_widget->setStyleSheet("border: 1px black");
     recipe_widget->show();
 
     //code for the instruction widget
@@ -75,7 +79,7 @@ MainWindow::MainWindow(QWidget *parent)
     instructions_layout->addWidget(instructions_label);
   //  instructions_layout->addWidget(close_instructions);
     instructions_page->setLayout(instructions_layout);
-    instructions_page->setStyleSheet("color: rgb(25, 25, 100); background-color: rgb(250, 250, 250);");
+    instructions_page->setStyleSheet("background-color: rgb(250, 250, 250);");
     //end of code for instrucion widget
 
     //code for add_item_widget page
@@ -90,7 +94,7 @@ MainWindow::MainWindow(QWidget *parent)
     stackedWidget->addWidget(add_item_widget);
     stackedWidget->addWidget(edit_item_widget);
     stackedWidget->setStyleSheet("background-color: rgb(240,240,250);");
-    stackedWidget->setFixedSize(250, 275);
+    stackedWidget->setFixedSize(250, 300);
 
     fridge = new Fridge(3);
     freezer = new Freezer(3);
@@ -107,11 +111,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     //setting the font and button colors
     my_pantry->setFont(My_Pantry_Label);
-    my_pantry->setStyleSheet("color: rgb(25, 25, 100);");
+  //  my_pantry->setStyleSheet("color: rgb(25, 25, 100);");
   //  instructions_button->setFont(Instruction_Button);
  //   instructions_button->setStyleSheet("color: rgb(25, 25, 100);");
     add_item_button->setFont(Add_Item_Button);
-    add_item_button->setStyleSheet("color: rgb(25, 25, 100);");
+  //  add_item_button->setStyleSheet("color: rgb(25, 25, 100);");
 
     //background of the main window, bricks
     setStyleSheet("MainWindow {background-image: url(:/new/prefix1/hld186-oblong-granite-grey-tile-wallper-ea2.jpg);}");
@@ -127,6 +131,7 @@ MainWindow::MainWindow(QWidget *parent)
     main_layout->addWidget(counter, 3, 1, Qt::AlignBottom);
     main_layout->addWidget(cabinet, 1, 1, 1, 1, Qt::AlignTop);
     main_layout->addWidget(stackedWidget, 0,2,-1,1, Qt::AlignTop);
+    main_layout->addWidget(cancel_button, 0,2,-1,1, Qt::AlignHCenter);
     main_layout->addWidget(recipe_widget, 0, 2, -1, 1, Qt::AlignBottom);
 
     fridge_list = new FoodListWidget (1);
@@ -158,6 +163,7 @@ MainWindow::MainWindow(QWidget *parent)
     QObject::connect(edit_item_widget->cancel_add_item, SIGNAL(clicked()), this, SLOT(gotoRecipePage()));
     QObject::connect(edit_item_widget->addchange_item_button, SIGNAL(clicked()), this, SLOT(gotoRecipePage()));
     QObject::connect(edit_item_widget->delete_item_button, SIGNAL(clicked()), this, SLOT(gotoRecipePage()));
+    QObject::connect(cancel_button, SIGNAL(clicked()), this, SLOT(gotoRecipePage()));
 
 
     //showing add_item_widget and closing it at the same time the freezer button is clicked

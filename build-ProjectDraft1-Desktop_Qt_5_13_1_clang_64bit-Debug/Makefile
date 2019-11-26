@@ -65,6 +65,7 @@ SOURCES       = ../ProjectDraft1/addedititemwidget.cpp \
 		../ProjectDraft1/mainwindow.cpp \
 		../ProjectDraft1/recipebook.cpp \
 		../ProjectDraft1/recipecreator1.cpp qrc_MainWindowWallpaper.cpp \
+		qrc_audio.cpp \
 		qrc_sounds.cpp \
 		moc_addedititemwidget.cpp \
 		moc_foodlistwidget.cpp \
@@ -86,6 +87,7 @@ OBJECTS       = addedititemwidget.o \
 		recipebook.o \
 		recipecreator1.o \
 		qrc_MainWindowWallpaper.o \
+		qrc_audio.o \
 		qrc_sounds.o \
 		moc_addedititemwidget.o \
 		moc_foodlistwidget.o \
@@ -529,6 +531,7 @@ Makefile: ../ProjectDraft1/ProjectDraft1.pro /Users/Saachinator/Qt/5.13.1/clang_
 		/Users/Saachinator/Qt/5.13.1/clang_64/mkspecs/features/lex.prf \
 		../ProjectDraft1/ProjectDraft1.pro \
 		../ProjectDraft1/MainWindowWallpaper.qrc \
+		../ProjectDraft1/audio.qrc \
 		../ProjectDraft1/sounds.qrc \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtMultimedia.framework/QtMultimedia.prl \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/QtWidgets.prl \
@@ -732,6 +735,7 @@ Makefile: ../ProjectDraft1/ProjectDraft1.pro /Users/Saachinator/Qt/5.13.1/clang_
 /Users/Saachinator/Qt/5.13.1/clang_64/mkspecs/features/lex.prf:
 ../ProjectDraft1/ProjectDraft1.pro:
 ../ProjectDraft1/MainWindowWallpaper.qrc:
+../ProjectDraft1/audio.qrc:
 ../ProjectDraft1/sounds.qrc:
 /Users/Saachinator/Qt/5.13.1/clang_64/lib/QtMultimedia.framework/QtMultimedia.prl:
 /Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/QtWidgets.prl:
@@ -767,7 +771,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../ProjectDraft1/MainWindowWallpaper.qrc ../ProjectDraft1/sounds.qrc $(DISTDIR)/
+	$(COPY_FILE) --parents ../ProjectDraft1/MainWindowWallpaper.qrc ../ProjectDraft1/audio.qrc ../ProjectDraft1/sounds.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/Saachinator/Qt/5.13.1/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../ProjectDraft1/addedititemwidget.h ../ProjectDraft1/cabinet.h ../ProjectDraft1/counter.h ../ProjectDraft1/fooditem.h ../ProjectDraft1/foodlistwidget.h ../ProjectDraft1/foodlistwidgetitem.h ../ProjectDraft1/foodstoragewidget.h ../ProjectDraft1/freezer.h ../ProjectDraft1/fridge.h ../ProjectDraft1/mainwindow.h ../ProjectDraft1/recipebook.h ../ProjectDraft1/recipecreator1.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../ProjectDraft1/addedititemwidget.cpp ../ProjectDraft1/cabinet.cpp ../ProjectDraft1/counter.cpp ../ProjectDraft1/fooditem.cpp ../ProjectDraft1/foodlistwidget.cpp ../ProjectDraft1/foodlistwidgetitem.cpp ../ProjectDraft1/foodstoragewidget.cpp ../ProjectDraft1/freezer.cpp ../ProjectDraft1/fridge.cpp ../ProjectDraft1/main.cpp ../ProjectDraft1/mainwindow.cpp ../ProjectDraft1/recipebook.cpp ../ProjectDraft1/recipecreator1.cpp $(DISTDIR)/
@@ -798,16 +802,22 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all: qrc_MainWindowWallpaper.cpp qrc_sounds.cpp
+compiler_rcc_make_all: qrc_MainWindowWallpaper.cpp qrc_audio.cpp qrc_sounds.cpp
 compiler_rcc_clean:
-	-$(DEL_FILE) qrc_MainWindowWallpaper.cpp qrc_sounds.cpp
+	-$(DEL_FILE) qrc_MainWindowWallpaper.cpp qrc_audio.cpp qrc_sounds.cpp
 qrc_MainWindowWallpaper.cpp: ../ProjectDraft1/MainWindowWallpaper.qrc \
 		/Users/Saachinator/Qt/5.13.1/clang_64/bin/rcc \
 		../ProjectDraft1/hld186-oblong-granite-grey-tile-wallper-ea2.jpg
 	/Users/Saachinator/Qt/5.13.1/clang_64/bin/rcc -name MainWindowWallpaper ../ProjectDraft1/MainWindowWallpaper.qrc -o qrc_MainWindowWallpaper.cpp
 
+qrc_audio.cpp: ../ProjectDraft1/audio.qrc \
+		/Users/Saachinator/Qt/5.13.1/clang_64/bin/rcc \
+		../ProjectDraft1/music.mp3
+	/Users/Saachinator/Qt/5.13.1/clang_64/bin/rcc -name audio ../ProjectDraft1/audio.qrc -o qrc_audio.cpp
+
 qrc_sounds.cpp: ../ProjectDraft1/sounds.qrc \
 		/Users/Saachinator/Qt/5.13.1/clang_64/bin/rcc \
+		../ProjectDraft1/music.qrc \
 		../ProjectDraft1/atlast.mp3
 	/Users/Saachinator/Qt/5.13.1/clang_64/bin/rcc -name sounds ../ProjectDraft1/sounds.qrc -o qrc_sounds.cpp
 
@@ -894,13 +904,15 @@ moc_mainwindow.cpp: ../ProjectDraft1/mainwindow.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtCore.framework/Headers/qobject.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QRadioButton \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qradiobutton.h \
 		../ProjectDraft1/recipebook.h \
 		../ProjectDraft1/freezer.h \
 		../ProjectDraft1/cabinet.h \
 		../ProjectDraft1/counter.h \
 		../ProjectDraft1/addedititemwidget.h \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QRadioButton \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qradiobutton.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QDateEdit \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qdatetimeedit.h \
 		moc_predefs.h \
@@ -923,6 +935,10 @@ moc_recipecreator1.cpp: ../ProjectDraft1/recipecreator1.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QRadioButton \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qradiobutton.h \
 		../ProjectDraft1/recipebook.h \
 		moc_predefs.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/bin/moc
@@ -990,6 +1006,8 @@ addedititemwidget.o: ../ProjectDraft1/addedititemwidget.cpp ../ProjectDraft1/add
 		../ProjectDraft1/recipecreator1.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
 		../ProjectDraft1/recipebook.h \
 		../ProjectDraft1/freezer.h \
 		../ProjectDraft1/cabinet.h \
@@ -1086,6 +1104,8 @@ foodstoragewidget.o: ../ProjectDraft1/foodstoragewidget.cpp ../ProjectDraft1/foo
 		../ProjectDraft1/recipecreator1.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
 		../ProjectDraft1/recipebook.h \
 		../ProjectDraft1/freezer.h \
 		../ProjectDraft1/cabinet.h \
@@ -1144,13 +1164,15 @@ main.o: ../ProjectDraft1/main.cpp ../ProjectDraft1/mainwindow.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtCore.framework/Headers/qobject.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QRadioButton \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qradiobutton.h \
 		../ProjectDraft1/recipebook.h \
 		../ProjectDraft1/freezer.h \
 		../ProjectDraft1/cabinet.h \
 		../ProjectDraft1/counter.h \
 		../ProjectDraft1/addedititemwidget.h \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QRadioButton \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qradiobutton.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QDateEdit \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qdatetimeedit.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QApplication \
@@ -1183,13 +1205,15 @@ mainwindow.o: ../ProjectDraft1/mainwindow.cpp ../ProjectDraft1/mainwindow.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtCore.framework/Headers/qobject.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QLineEdit \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QRadioButton \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qradiobutton.h \
 		../ProjectDraft1/recipebook.h \
 		../ProjectDraft1/freezer.h \
 		../ProjectDraft1/cabinet.h \
 		../ProjectDraft1/counter.h \
 		../ProjectDraft1/addedititemwidget.h \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QRadioButton \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qradiobutton.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QDateEdit \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qdatetimeedit.h \
 		ui_mainwindow.h \
@@ -1200,9 +1224,7 @@ mainwindow.o: ../ProjectDraft1/mainwindow.cpp ../ProjectDraft1/mainwindow.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtGui.framework/Headers/QFont \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtGui.framework/Headers/qfont.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtMultimedia.framework/Headers/QSound \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtMultimedia.framework/Headers/qsound.h \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
-		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtMultimedia.framework/Headers/qsound.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../ProjectDraft1/mainwindow.cpp
 
 recipebook.o: ../ProjectDraft1/recipebook.cpp ../ProjectDraft1/recipebook.h \
@@ -1227,6 +1249,10 @@ recipecreator1.o: ../ProjectDraft1/recipecreator1.cpp ../ProjectDraft1/recipecre
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QRadioButton \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qradiobutton.h \
 		../ProjectDraft1/recipebook.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h \
@@ -1234,6 +1260,8 @@ recipecreator1.o: ../ProjectDraft1/recipecreator1.cpp ../ProjectDraft1/recipecre
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtCore.framework/Headers/QString \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtGui.framework/Headers/QPainter \
+		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtGui.framework/Headers/qpainter.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtGui.framework/Headers/QFont \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtGui.framework/Headers/qfont.h \
 		/Users/Saachinator/Qt/5.13.1/clang_64/lib/QtGui.framework/Headers/QDesktopServices \
@@ -1244,6 +1272,9 @@ recipecreator1.o: ../ProjectDraft1/recipecreator1.cpp ../ProjectDraft1/recipecre
 
 qrc_MainWindowWallpaper.o: qrc_MainWindowWallpaper.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_MainWindowWallpaper.o qrc_MainWindowWallpaper.cpp
+
+qrc_audio.o: qrc_audio.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_audio.o qrc_audio.cpp
 
 qrc_sounds.o: qrc_sounds.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_sounds.o qrc_sounds.cpp

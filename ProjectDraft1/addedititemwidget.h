@@ -28,12 +28,14 @@ signals:
 
 public slots:
     void button_clicked();
+    void clearFields();
     void close_widget();
 
 private:
     bool is_add;
 
     QPushButton * addchange_item_button;
+    QPushButton * clear_fields_button;
     QPushButton * cancel_add_item;
     QPushButton * delete_item_button = nullptr;
 
